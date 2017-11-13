@@ -8,13 +8,13 @@
 <body>
 	<p>
 			<?php
-			
+
 				// Se verifica qué botón se va a utilizar
-				
-				
-				$conexion=oci_connect("Confi","ConfiA29","localhost/XE");
-					
-							
+
+				include("abrir_conexion.php");
+				//$conexion=oci_connect("Confi","ConfiA29","localhost/XE");
+
+
 					// Para mostrar el número del empleado...
 					// isset sirve para preguntar ¿si no está vacío?
 						if (isset ($_POST['Submit']))
@@ -28,17 +28,17 @@
 							$exec=oci_execute($consulta);
 							// El resultado de la consulta se guarda en un arreglo
 							$registro = oci_fetch_array($consulta);
-				
+
 							if(!$consulta)
-								echo "Error en la base de datos" ;		
-							oci_close($conexion);	
+								echo "Error en la base de datos" ;
+							oci_close($conexion);
 			?>
 	</p>
 					<h2>Añadir información</h2>
 						<form id="form1" name="form1" method="post" action="actualizarDatos.php">
 								<p>
 								  <label>No. Empleado
-								  <input name="no_empleado" type="text" id="no_empleado" value = "<?php echo $registro[0] ; ?>" /> 
+								  <input name="no_empleado" type="text" id="no_empleado" value = "<?php echo $registro[0] ; ?>" />
 								  </label>
 								</p>
 							    <p>
