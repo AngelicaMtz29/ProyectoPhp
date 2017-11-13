@@ -8,32 +8,40 @@
 	<body>
 		<?php
 			// Para Agregar
-		
+
 				// Obtenemos los valores del formulario
-				$no_empleado = $_POST['no_empleado'] ;
-				$fecha = $_POST['fecha'] ;
+
+if (isset($_POST['no_empleado'])) {
+	echo $_POST['no_empleado'];
+}
+       $no_empleado = $_POST['no_empleado'] ;
+        $fecha = $_POST['fecha'] ;
+
 				$dias = $_POST['dias'] ;
-				
-				
+
+
+
+
 				// Abrimos la conexión con la base de datos
-				$conexion=oci_connect("Confi","ConfiA29","localhost/XE");
-				
+				//$conexion=oci_connect("Confi","ConfiA29","localhost/XE");
+
+				include("abrir_conexion.php");
 				// La consulta que actualizará el registro en la BD, se guarda en una variable...
-				$sql = "insert into Vacaciones(FechaInicio, NoDias) values('$fecha','$dias') where NoEmpleado=$no_empleado" ;
-				
+				$sql = "insert into Vacaciones(NoEmpleado,FechaInicio, NodDias) values($no_empleado,'$fecha',$dias) " ;
+echo $sql;
 				// preparar la sentencia...
 				$consulta=oci_parse($conexion, $sql) ;
-			
-				
+
+$exce = oci_execute($consulta); //Faltaba poner esto
 				// Cerramos la conexión con la BD
 				oci_close($conexion);
-				
+
 				// Validamos que se haya hecho la inserción del registro en la BD
 				if (!$consulta)
 					echo "Error de actualización en la BD" ;
-				else	
+				else
 				include('ControlVacaciones.php') ; // Si el registro se almacenó correctamente, regresará al formulario de registro...
-				
+
 		?>
 	</body>
 </html>
