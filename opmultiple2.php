@@ -6,14 +6,15 @@
 </head>
 
 	<body>
-		
+
 			<?php
-		
+
 				// Se verifica qué botón se va a utilizar
-			
+
 				$boton = $_POST['Submit'] ;
 				if ($boton == "Ejecutar") {
-					$conexion=oci_connect("Confi","ConfiA29","localhost/XE");	
+					//$conexion=oci_connect("Confi","ConfiA29","localhost/XE");
+					include("abrir_conexion.php");
 				// Para mostrar el número del empleado...
 				// isset sirve para preguntar ¿si no está vacío?
 					if (isset ($_POST['editar'])) {
@@ -27,23 +28,23 @@
 						$exec=oci_execute($consulta);
 						// El resultado de la consulta se guarda en un arreglo
 						$registro = oci_fetch_array($consulta) ;
-			
+
 						if(!$consulta)
-							echo "Error en la base de datos" ;		
-						oci_close($conexion);	
+							echo "Error en la base de datos" ;
+						oci_close($conexion);
 			?>
-		  
+
 						  <!-- Se crea un nuevo formulario en el que se colocará la información del producto seleccionado -->
 						  <!-- nótese a dónde lleva el action de este formulario -->
-		
+
 						<p>Añadir vacaciones  </p>
 							<form id="form1" name="form1" method="post" action="actualizarDatos.php">
 								<p>
 								  <label>No. Empleado:
-								  
+
 								  <!-- La información que tendrán los campos de este formulario, la obtenemos del arreglo en sus diferentes posiciones -->
-								  
-								  <input name="no_empleado" type="text" id="no_empleado" value = "<?php echo $registro[0] ; ?>" /> 
+                    <!-- value = <?php //echo $registro[0] ; ?> disabled-->
+								  <input name="no_empleado" type="number" id="no_empleado"  />
 								  </label>
 								</p>
 							    <p>
@@ -53,7 +54,7 @@
 							    </p>
 							    <p>
 								<label>Número de días:
-								<input name="dias" type="text" id="dias"/>
+								<input name="dias" type="number" id="dias"/>
 								</label>
 							    </p>
 							    <p>
@@ -62,10 +63,10 @@
 								</label>
 							    </p>
 							</form>
-							
+
 
 				<?php
-				
+
 					}
 				}
 				?>
