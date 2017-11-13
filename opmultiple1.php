@@ -8,16 +8,17 @@
 <body>
 	<p>
 	  <?php
-	  
+
 		//establecer la conexión
-		$conexion=oci_connect("Confi","ConfiA29","localhost/XE");
+		//$conexion=oci_connect("Confi","ConfiA29","localhost/XE");
+		include("abrir_conexion.php");
 		//capturar la consulta
-		$sql = "select * from Empleado" ;
+		$sql = "select * from Empleado order by NoEmpleado" ;
 		//preparar la sentencia
 		$consulta = oci_parse($conexion, $sql) ;
 		//Ejecutar la sentencia
 		$exec=oci_execute($consulta);
-		
+
 		// verifico si hubo resultados al ajecutar la consulta
 		$resul = oci_fetch_array($consulta) ;
 		if ($resul == 0)
@@ -45,8 +46,8 @@
           <td><?php echo $registro[1] ; ?> </td>
           <td><?php echo $registro[2] ; ?></td>
           <td><label>
-		  
-		
+
+
             <input name="editar" id="editar" type="radio" value="<?php echo $registro[0] ; ?>" />
 
           </label></td>
@@ -54,12 +55,12 @@
         <?php
 	  	}
 	  ?>
-        
+
       </table>
-	 
+
       <input name="Submit" type="submit" id="Submit" value="Ejecutar"  />
 	  <label></label>
 	</form>
-	
+
 </body>
 </html>
