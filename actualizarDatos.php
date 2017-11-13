@@ -10,7 +10,8 @@
 			// Para Agregar
 
 				// Obtenemos los valores del formulario
-
+/* En cuanto a obtener el no_empleado no se podrá dandole un valor, tenemos que obtenerlo, mediante get, pero esto altera a los demás
+en tanto fecha y dias*/
 if (isset($_POST['no_empleado'])) {
 	echo $_POST['no_empleado'];
 }
@@ -27,12 +28,13 @@ if (isset($_POST['no_empleado'])) {
 
 				include("abrir_conexion.php");
 				// La consulta que actualizará el registro en la BD, se guarda en una variable...
+	//Era necesario agregar el campo NoEmpleado para la inserción --- Ojo, yo lo tengo como "NodDias"
 				$sql = "insert into Vacaciones(NoEmpleado,FechaInicio, NodDias) values($no_empleado,'$fecha',$dias) " ;
 echo $sql;
 				// preparar la sentencia...
 				$consulta=oci_parse($conexion, $sql) ;
 
-$exce = oci_execute($consulta); //Faltaba poner esto
+$exce = oci_execute($consulta); //Faltaba poner esto, para que pudiera ejecutarse
 				// Cerramos la conexión con la BD
 				oci_close($conexion);
 

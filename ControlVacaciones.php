@@ -10,6 +10,7 @@
 			<?php
 				//establecer la conexión
 				//$conexion=oci_connect("Confi","ConfiA29","localhost/XE");
+				//No entiendo porqué el uso de 2 consultas, con una era suficiente, por cierto solo muestra algunos registros
 				include("abrir_conexion.php");
 								//capturar la consulta
 				//$sql = "select * from Empleado" ;

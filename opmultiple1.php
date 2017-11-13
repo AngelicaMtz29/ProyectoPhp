@@ -21,7 +21,7 @@
 
 		// verifico si hubo resultados al ajecutar la consulta
 		$resul = oci_fetch_array($consulta) ;
-		if ($resul == 0)
+		if ($resul == 0)//Bien al hacer esto
 			echo "No hay empleados registrados"  ;
 		oci_close($conexion);
 	?>
